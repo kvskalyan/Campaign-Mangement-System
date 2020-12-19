@@ -1,0 +1,19 @@
+<title>{{title}}</title>
+
+<body>
+  <div class="wrapper">
+    <div class="container">
+      <h1>{{title}}</h1>
+      <form>
+
+        <p><label>Email Id:</label></p>
+        <p><input name="email" type="email" [(ngModel)]="email" placeholder="Enter your Email Address" /></p>
+        <p><label>Password:</label></p>
+        <p><input name="password" type="password" [(ngModel)]="password" placeholder="Enter your Password" /></p>
+        <p class="error" *ngIf="!isAdmin">Email/Password is incorrect</p>
+        <p><button type="submit" (click)="login($event)">Log In</button></p>
+      </form><br>
+      <a routerLink="/survey" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Answer a Survey</a>
+    </div>
+  </div>
+</body>

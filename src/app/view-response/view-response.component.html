@@ -1,0 +1,41 @@
+<title>{{title}}</title>
+
+<body>
+    <div class="wrapper">
+        <h1>Campaign Management System</h1>
+        <div class="navigation">
+            <nav>
+                <a routerLink="/adminHome" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a>
+                &nbsp;
+                <a routerLink="/adminHome/newSurvey" routerLinkActive="active"
+                    [routerLinkActiveOptions]="{exact:true}">Create a
+                    Survey</a> &nbsp;
+                <a routerLink="/adminHome/logout" routerLinkActive="active"
+                    [routerLinkActiveOptions]="{exact:true}">logout</a>
+            </nav>
+        </div>
+        <div class="container">
+            <div class="details">
+                <label><span>Survey id:</span>{{_survey.surveyId}}</label><br>
+                <label><span>Survey Name:</span>{{_survey.surveyName}}</label><br>
+                <label><span>User Name:</span>{{_userDetails.userName}}</label><br>
+                <label><span>User Email:</span>{{_userDetails.userEmail}}</label><br>
+                <div class="response">
+                    <span *ngFor='let question of _survey.questions;let i=index;'>
+                        <span class="questions" id="question{{i+1}}">
+                            Question {{i+1}} : {{question.question}}
+                        </span><br>
+                        <span *ngIf="null != question.options">
+                            <label *ngFor='let option of question.options;let i=index;' class="options" id="option{{i+1}}">
+                                Option {{i+1}} : {{question.options[i]}}<br>
+                            </label>
+                        </span>
+                        <span class="answers" id="answer{{i+1}}">
+                            Answer : {{_response.answers[i].response}}
+                        </span><br><br>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

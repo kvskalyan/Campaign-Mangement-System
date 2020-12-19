@@ -1,0 +1,45 @@
+<title>Answer a Survey</title>
+
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <div class="details">
+                <h3><label>Survey Id: {{dataId}}</label></h3>
+                <h3><label>Name: {{_survey.surveyName}}</label></h3>
+                <h3><label>Description: {{_survey.surveyDescription}}</label></h3>
+            </div>
+            <form>
+                <mat-horizontal-stepper class="matHorizontalStepper" [linear]=true #stepper>
+                    <mat-step [stepControl]="userDetailForm">
+                        <form [formGroup]="userDetailForm">
+                            <ng-template matStepLabel>{{ userDetailStep.label }}</ng-template>
+                            <ng-template matStepperIcon="edit" let-index="index">{{(index+1)}}</ng-template>
+                            <formly-form [form]="userDetailForm" [fields]="userDetailStep.fields"
+                                [model]="userDetailModel">
+                            </formly-form>
+                            <div>
+                                <button mat-button matStepperNext [disabled]="!userDetailForm.valid"
+                                    (click)="userDetailsSubmit()">{{userDetailStepFunction}}</button>
+                            </div>
+                        </form>
+                    </mat-step>
+                    <form [formGroup]="answerSurveyForm">
+                        <mat-step [stepControl]="answerSurveyForm">
+                            <ng-template matStepLabel>{{ answerSurveyStep.label }}</ng-template>
+                            <ng-template matStepperIcon="edit" let-index="index">{{(index+1)}}</ng-template>
+                            <formly-form [form]="answerSurveyForm" [model]="answerSurveyModel"
+                                [fields]="answerSurveyStep.fields" >
+                            </formly-form>
+                            <div>
+                                <button matStepperPrevious type="button" (click)="removeHttpError()">Back</button>
+                                <button [disabled]="!answerSurveyForm.valid" type="submit"
+                                    (click)="finalSubmit()">Submit</button>
+                            </div>
+                        </mat-step>
+                    </form>
+                    <!-- <p><button type="submit" (click)="answerSurvey($event)">Submit</button></p> -->
+                </mat-horizontal-stepper>
+            </form>
+        </div>
+    </div>
+</body>

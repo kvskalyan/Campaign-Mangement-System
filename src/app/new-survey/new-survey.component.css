@@ -1,0 +1,123 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-weight: 300;
+}
+
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  color: white;
+}
+
+.wrapper {
+  background: #50a3a2;
+  background: -webkit-linear-gradient(top left, #d0d0d0 0%, #000000 100%);
+  background: linear-gradient(to bottom right, #d0d0d0 0%, #000000 100%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  text-align: center;
+}
+
+.container {
+  margin: 0 auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  height: auto;
+}
+
+.container h3 {
+  color: #000000;
+  font-weight: 400;
+}
+
+.navigation {
+  padding-top: 20px;
+  font-size: x-large;
+}
+
+nav :hover {
+  font-weight: bolder;
+  background-color: whitesmoke;
+  color: black;
+  font-size: medium;
+  padding: 5px;
+}
+
+.matHorizontalStepper {
+  color: black;
+}
+
+::ng-deep .mat-step-icon-selected, .mat-step-icon-state-done, .mat-step-icon-state-edit {
+  background-color: black;
+  color: whitesmoke;
+}
+
+::ng-deep .mat-horizontal-content-container {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+::ng-deep .form-group {
+  padding: 20px 0;
+  position: relative;
+  z-index: 2;
+}
+
+::ng-deep .form-group input, ::ng-deep .form-group textarea, ::ng-deep .form-group select {
+  appearance: auto;
+  outline: 0;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.2);
+  width: 250px;
+  border-radius: 3px;
+  padding: 10px 15px;
+  margin: 0 auto 10px auto;
+  display: block;
+  text-align: center;
+  font-size: 18px;
+  color: white;
+  font-weight: 300;
+}
+
+::ng-deep .form-group input:hover, ::ng-deep .form-group textarea:hover, ::ng-deep .form-group select:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+::ng-deep .form-group input:focus, ::ng-deep .form-group textarea:focus, ::ng-deep .form-group select:focus {
+  background-color: white;
+  width: 300px;
+  color: #000;
+}
+
+::ng-deep .ng-star-inserted button {
+  appearance: none;
+  outline: 0;
+  background-color: white;
+  border: 0;
+  padding: 10px 15px;
+  color: #000;
+  border-radius: 3px;
+  width: 250px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+::ng-deep .ng-star-inserted button:hover {
+  background-color: #f5f7f9;
+}
+
+::ng-deep formly-validation-message {
+  color: red;
+}
+
+.httpError {
+  padding: 10px 15px;
+  font-weight: 500;
+  font-size: x-large;
+  color: red;
+}

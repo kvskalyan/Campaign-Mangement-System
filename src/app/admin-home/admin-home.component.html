@@ -1,0 +1,49 @@
+<title>{{title}}</title>
+
+<body>
+    <div class="wrapper">
+        <h1>Campaign Management System</h1>
+        <div class="navigation">
+            <nav>
+                <a routerLink="/adminHome" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a>
+                &nbsp;
+                <a routerLink="newSurvey" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Create a
+                    Survey</a> &nbsp;
+                <a routerLink="logout" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">logout</a>
+            </nav>
+        </div>
+        <div class="container" #pRef>
+            <h3>List of All Surveys</h3><br>
+            <label id="filter">Filter by Name:</label>
+            <input type="text" name="filter" id="filter" value="" [(ngModel)]="nameFilter"><br><br>
+            <div class="allSurveys">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Survey Id</th>
+                            <th>Survey Name</th>
+                            <th>Survey Description</th>
+                            <th>Survey Status</th>
+                            <th>Number of Responses</th>
+                            <th>Answer/Share Survey</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let survey of allSurveys | surveyNamePipe : nameFilter;'>
+                            <td id="surveyLink"><a routerLink="survey/{{survey.surveyId}}">{{survey.surveyId}}</a></td>
+                            <td>{{survey.surveyName}}</td>
+                            <td>{{survey.surveyDescription}}</td>
+                            <td>{{survey.surveyStatus}}</td>
+                            <td>{{survey.numberOfResponses}}</td>
+                            <td><a routerLink="/survey/{{survey.surveyId}}">Link</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div><br><br><br>
+            <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="chartData" [gradient]="gradient"
+                [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+                [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel">
+            </ngx-charts-bar-vertical>
+        </div>
+    </div>
+</body>

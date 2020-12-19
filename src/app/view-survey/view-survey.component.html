@@ -1,0 +1,59 @@
+<title>{{title}}</title>
+
+<body>
+    <div class="wrapper">
+        <h1>Campaign Management System</h1>
+        <div class="navigation">
+            <nav>
+                <a routerLink="/adminHome" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a>
+                &nbsp;
+                <a routerLink="/adminHome/newSurvey" routerLinkActive="active"
+                    [routerLinkActiveOptions]="{exact:true}">Create a
+                    Survey</a> &nbsp;
+                <a routerLink="/adminHome/logout" routerLinkActive="active"
+                    [routerLinkActiveOptions]="{exact:true}">logout</a>
+            </nav>
+        </div>
+        <div class="container">
+            <h3>{{_survey.surveyName}}</h3>
+            <div class="details">
+                <label style="text-align: unset;"><span>Survey Id:</span>{{_survey.surveyId}}</label><br>
+                <label><span>Description:</span>{{_survey.surveyDescription}}</label><br>
+                <label><span>Number of Responses:</span>{{_survey.numberOfResponses}}</label><br><br>
+                <label id="filter">Filter by Name:</label>
+                <input type="text" name="namefilter" id="namefilter" value="" [(ngModel)]="nameFilter"><br><br>
+                <label id="filter">Filter by Email:</label>
+                <input type="text" name="emailfilter" id="emailfilter" value="" [(ngModel)]="emailFilter"><br><br>
+                <label id="filter">Filter between two Dates:</label>&nbsp
+                <label>Start Date:</label>
+                <input type="date" name="startDatefilter" id="startDatefilter" value="" [(ngModel)]="startDateFilter">&nbsp
+                <label>End Date:</label>
+                <input type="date" name="endDatefilter" id="endDatefilter" value="" [(ngModel)]="endDateFilter">&nbsp
+                <input type="button" (click)="exportAsXLSX()" class="excelButton" value="Export as Excel"><br><br>
+                <div class="allResponses">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Response Id</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Submitted on</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor='let _abstractResponse of _abstractResponses | responseUserName:nameFilter
+                             | responseUserEmail : emailFilter | responseSubmittedTime:startDateFilter:endDateFilter;'>
+                                <td id="responseLink"><a
+                                        routerLink="response/{{_abstractResponse.responseId}}">{{_abstractResponse.responseId}}</a>
+                                </td>
+                                <td>{{_abstractResponse.userName}}</td>
+                                <td>{{_abstractResponse.userEmail}}</td>
+                                <td>{{_abstractResponse.responseTime | date:'medium'}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,54 @@
+<title>{{title}}</title>
+
+<body>
+  <div class="wrapper">
+    <h1>Campaign Management System</h1>
+    <div class="navigation">
+      <nav>
+        <a routerLink="/adminHome" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a>
+        &nbsp;
+        <a routerLink="/adminHome/newSurvey" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Create a
+          Survey</a> &nbsp;
+        <a routerLink="/adminHome/logout" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">logout</a>
+      </nav>
+    </div>
+    <div class="container">
+      <h3>Create a New Survey</h3>
+      <div class="httpError">{{_errorMessage}}</div>
+      <div class="newSurvey">
+        <form>
+          <mat-horizontal-stepper class="matHorizontalStepper" [linear]=true #stepper>
+            <mat-step [stepControl]="surveyDetailForm">
+              <form [formGroup]="surveyDetailForm">
+                <ng-template matStepLabel>{{ surveyDetailStep.label }}</ng-template>
+                <ng-template matStepperIcon="edit" let-index="index">{{(index+1)}}</ng-template>
+                <formly-form [form]="surveyDetailForm" [fields]="surveyDetailStep.fields" [model]="surveyDetailModel">
+                </formly-form>
+                <div>
+                  <button mat-button matStepperNext [disabled]="!surveyDetailForm.valid"
+                    (click)="surveyDetailsSubmit()">{{surveyDetailStepFunction}}</button>
+                </div>
+              </form>
+            </mat-step>
+            <form [formGroup]="form">
+              <mat-step *ngFor="let step of steps; let index = index; let last = last;" [stepControl]="form.at(index)">
+
+                <ng-template matStepLabel>{{ step.label }}</ng-template>
+                <ng-template matStepperIcon="edit" let-index="index">{{(index+1)}}</ng-template>
+                <formly-form class="stepForm" [form]="form.at(index)" [model]="newSurveyModel" [fields]="step.fields"
+                  [options]="step.options">
+                </formly-form>
+                <div>
+                  <button matStepperPrevious type="button" (click)="removeHttpError()">Back</button>
+                  <button *ngIf="!last" matStepperNext type="button" [disabled]="!form.at(index).valid">Next</button>
+                  <button *ngIf="last" [disabled]="!form.valid" type="submit" (click)="finalSubmit()">Submit</button>
+                </div>
+
+              </mat-step>
+            </form>
+          </mat-horizontal-stepper>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>

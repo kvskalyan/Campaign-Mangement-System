@@ -1,0 +1,12 @@
+<title>Answer a Survey</title>
+<body>
+  <div class="wrapper">
+  <div class="container">
+  <form>
+    <p><label>Survey Id:</label></p>
+    <p><input name='SurveyId' type="text" placeholder="Enter Survey Id" [(ngModel)]="_surveyId"></p>
+    <p><button type="submit" (click)="answerSurvey($event)">Submit</button></p>
+  </form>
+  </div>
+  </div>
+</body>
